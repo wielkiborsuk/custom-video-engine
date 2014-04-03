@@ -1,6 +1,6 @@
 var express = require('express'),
   util = require('./util'),
-  renderer = require('./main');
+  videoEngine = require('./main');
 
 var app = express();
 
@@ -9,8 +9,11 @@ app.configure(function () {
   app.use(express.bodyParser())
   app.use(express.methodOverride())
   app.use(express.cookieParser())
-  app.engine('mp4', renderer.renderFile);
+  app.engine('jade', require('jade').__express);
+  app.use('/style', express.static('style/'));
+  app.use('/www', videoEngine({ap: app}));
   app.use('/www', express.static(util.base))
+  app.use('/www2', express.static(util.base))
   app.use('/www', express.directory(util.base, {icons:true}))
 
   app.all('*', function (req, res, next) {
