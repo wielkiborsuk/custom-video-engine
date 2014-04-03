@@ -1,0 +1,22 @@
+{
+  "name": "custom-video-engine",
+  "description": "expressjs engine for video files",
+  "version": "0.2.0",
+  "main": "./main.js",
+  "author": {
+    "name": "wielki.borsuk",
+    "email": "wielki.borsuk@gmail.com"
+  },
+  "keywords": [],
+  "licenses": {
+    "type": "none"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://git@bitbucket.org:wielkiborsuk/custom-video-engine.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "express": "^3.5.1"
+  }
+}
