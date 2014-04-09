@@ -1,8 +1,19 @@
-html
+html(ng-app="clientApp" ng-init='prefix=\'#{prefix}\'; filePrefix=\'#{filesPath}\'')
   head
     meta(name='viewport', content='width=device-width')
-    link(rel='stylesheet', href='/style/main.css')
-  body
-    video(name='media' controls autoplay loop)
-      source(src='#{src}', type='video/mp4')
+    link(rel='stylesheet', href='#{stylePath}/main.css')
+    script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js")
+    script(src='#{scriptPath}/clientapp.js')
+  body(ng-controller='MainCtrl')
+    //-ul.nav
+      each val, index in files
+        li
+          - var v = filesPath + '/' + encodeURIComponent(val);
+          a.ellipsize(ng-click='select(\"#{v}\")', title='#{val}')= val
+    ul.nav
+      li(ng-repeat='f in list')
+        a.ellipsize(ng-click='select(f, \'#{filesPath}\')', title='{{f}}')= '{{f}}'
+    .content
+      video(name='media', controls, loop, player)
+        source(src='#{filesPath}/#{src}', type='video/mp4')
 

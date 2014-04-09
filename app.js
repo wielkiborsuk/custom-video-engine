@@ -5,15 +5,13 @@ var express = require('express'),
 var app = express();
 
 app.configure(function () {
-  app.use(express.favicon())
+  app.use(express.favicon(__dirname + '/style/favicon.ico'))
   app.use(express.bodyParser())
   app.use(express.methodOverride())
   app.use(express.cookieParser())
-  app.engine('jade', require('jade').__express);
-  app.use('/style', express.static('style/'));
-  app.use('/www', videoEngine({ap: app}));
+  app.use('/video', videoEngine({ap: app, prefix: '/video', path: '/home/borsuk/music/aga-list/'}));
+  app.use('/video2', videoEngine({ap: app, prefix: '/video2', path: '/home/borsuk/music/borsuk-list/'}));
   app.use('/www', express.static(util.base))
-  app.use('/www2', express.static(util.base))
   app.use('/www', express.directory(util.base, {icons:true}))
 
   app.all('*', function (req, res, next) {
