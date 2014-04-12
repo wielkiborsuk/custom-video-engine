@@ -15,8 +15,8 @@ module.exports = function (options) {
 
   if (app) {
     app.engine('jade', jade.__express);
-    app.use(prefix + '/style', express.static('style/'));
-    app.use(prefix + '/scripts', express.static('scripts/'));
+    app.use(prefix + '/style', express.static(__dirname + '/style/'));
+    app.use(prefix + '/scripts', express.static(__dirname + '/scripts/'));
     app.use(prefix + '/files', express.static(path));
   }
 
@@ -41,7 +41,7 @@ module.exports = function (options) {
       src: req.path,
     }
 
-    res.send(jade.renderFile('./views/video.jade', model));
+    res.send(jade.renderFile(__dirname + '/views/video.jade', model));
   };
 
   function fileScan(path) {
